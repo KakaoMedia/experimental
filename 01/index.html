@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kakao Experimentos - 01</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <style>
+    body {
+      background-color: #000;
+    }
+
+    .izq, .der {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+    }
+
+    .izq {
+      top: 0;
+      left: 0;
+      background-color: #251B19;
+    }
+
+    .der {
+      top: 0;
+      left:50%;
+      background-color: #2D2524;
+    }
+
+    .rombo {
+      position: absolute;
+      width: 457px;
+      height: 457px;
+      top: 50%;
+      left: 50%;
+      margin-top: -228px;
+      margin-left: -228px;
+      z-index: 999;
+      background: url('img/rombos0.png') no-repeat center center;
+    }
+
+
+  </style>
+
+  <script>
+    $(document).ready(function(){
+      var windows_width = $(window).width();
+
+      $('body').mousemove(function(e){
+        var percent_y = e.pageX / windows_width;
+
+        if(percent_y > 0.5){
+          color_set('#251B19','#2D2524');
+        }
+        else{
+          color_set('#2D2524','#251B19');
+        }
+
+      });
+
+      $(document).click(function(){
+        var random_number = Math.floor((Math.random() * 3) );
+        $('#rombo').css("background-image", "url(img/rombos" + random_number + ".png)");  
+      });
+
+    });
+
+    // TODO: fix on rezise
+    // $( window ).resize(function() {
+    //   console.log('resize');
+    //   windows_width = $(window).width();
+    // });
+
+    function color_set(xc,yc){
+      $('#izq').css('background-color',xc);
+      $('#der').css('background-color',yc);
+    }
+
+  </script>
+
+</head>
+
+<body>
+  <div class='izq' id='izq'></div>
+  <div class='der' id='der'></div>
+  <div class='rombo' id='rombo'></div>
+</body>
+
+</html>
